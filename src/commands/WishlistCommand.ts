@@ -6,11 +6,11 @@ import Downloader from "../Downloader";
 import MetadataSetter from "../MetadataSetter";
 
 export default class WishlistCommand {
-    static async exec(filePath: string, queryHint: string|undefined) {
-        const semaphore = new SemaphoreQueue(1);
+    static async exec(filePath: string, queryHint: string|undefined, parallelism: number) {
+        const semaphore = new SemaphoreQueue(parallelism);
         ListReader.readList(filePath).forEach(url => {
             semaphore.schedule(async () => {
-                await Downloader.start(url);
+                return Downloader.start(url);
             });
         });
 

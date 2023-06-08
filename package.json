@@ -4,7 +4,7 @@
   "description": "kinda like spot-dl, but in typescript",
   "main": "index.js",
   "bin": {
-    "lnmap": "./bin/index.js"
+    "wishlist-dl": "./bin/index.js"
   },
   "scripts": {
     "build": "npm run tsc",

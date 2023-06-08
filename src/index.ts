@@ -28,8 +28,9 @@ async function run() {
         .argument('<filename>', 'The file that contains your wishlist')
         .option('--hint <hint>', "A hint to pass to spotify", "")
         .option('--output-dir <outputDir>', "The output directory", "")
+        .option('--parallelism <parallelism>', "How many downloads to run in parallel", "1")
         .action(async (filename, options) => {
-            await WishlistCommand.exec(filename, options.hint);
+            await WishlistCommand.exec(filename, options.hint, Number(options.parallelism) || 1);
         });
 
     program
@@ -41,7 +42,7 @@ async function run() {
         });
 
     program
-        .command('3mu')
+        .command('m3u')
         .argument('<directory>')
         .action(async (directory) => {
             await PlaylistFileBuilder.build3MU(directory);
