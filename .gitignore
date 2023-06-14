@@ -4,3 +4,4 @@ downloads/**/**.m3u
 bin/**/**.js
 .env
 .idea
+.DS_Store
